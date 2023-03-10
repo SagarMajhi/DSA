@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
-int pos, i = 1, count = 0;
 typedef struct Node {
     int data;
     struct Node *next;
 } Node;
 Node *head = 0, *newNode, *tmp;
+int pos, i = 1, count = 0;
 void display() {
     tmp = head;
     while(tmp != 0) {
@@ -23,23 +23,22 @@ int main() {
         } else {
             newNode->next = 0;
             if(head == 0) {
-                head = tmp = newNode; 
+                head = tmp = newNode;
             } else {
                 tmp->next = newNode;
                 tmp = newNode;
             }
         }
     }
-    tmp = head;
-    while(tmp != 0) {
-        printf("%d\n", tmp->data);
-        tmp = tmp->next;
-    }
+    display();
     while(1) {
         int choice;
-        printf("\nEnter the operation that you want to perform: ");
+        printf("\nLinkedlist Menu\n");
+        printf("1. Insertion in the begining\n2. Insertion in the end\n3. Insertion in the given position\n4. Deletion in the begining\n5. Deletion in the end\n6. Deletion in the given position\n");
+        printf("Enter the operation: ");
         scanf("%d", &choice);
-        if(choice == -1) {
+        if(choice<= 0 || choice> 6) {
+            printf("\nInvalid Position\n");
             break;
         } else {
             switch(choice) {
@@ -69,7 +68,7 @@ int main() {
                     break;
                 case 3:
                     newNode = (Node *)malloc(sizeof(Node));
-                    printf("Enter the position: ");
+                    printf("Enter Position: ");
                     scanf("%d", &pos);
                     tmp = head;
                     while(tmp != 0) {
@@ -98,7 +97,7 @@ int main() {
                     head = head->next;
                     free(tmp);
 
-                    printf("\nDelete in the begining\n");
+                    printf("\nDeletion in the begining\n");
                     display();
                     break;
                 case 5:
@@ -116,7 +115,7 @@ int main() {
                     break;
                 case 6:
                     Node *nextNode;
-                    printf("Enter the position: ");
+                    printf("Enter Position: ");
                     scanf("%d", &pos);
                     tmp = head;
                     while(tmp != 0) {
@@ -135,10 +134,10 @@ int main() {
                         tmp->next = nextNode->next;
                         free(nextNode);
 
-                        printf("\nDelet in the given position\n");
+                        printf("\nDeletion in the given position\n");
                         display();
                     }
-                    break;
+
             }
         }
     }
